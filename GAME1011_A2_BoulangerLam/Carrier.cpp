@@ -34,12 +34,13 @@ Fighter* Carrier::launchNextFighter()
 
 string Carrier::getInfo()
 {
-	string info = name += "\n";
+	ostringstream ss;
+	ss << name << "\n";
 	for (int i = 0; i < numFighters; i++)
 	{
-	//	name += bayList[i].getInfo() + "\n";
+	//	ss << bayList[i].getInfo() << "\n";
 	}
-	return info;
+	return ss.str();
 }
 
 bool Carrier::hasFighters()
