@@ -141,7 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Carrier.cpp" />
     <ClCompile Include="Fighter.cpp" />
-    <ClCompile Include="GAME1011_A2_BoulangerLam.cpp" />
+    <ClCompile Include="Battle_Simulator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Carrier.h" />
