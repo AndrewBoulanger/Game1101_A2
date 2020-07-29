@@ -15,7 +15,7 @@ public:
 	Carrier() = default;
 	Carrier(string name, int maxBays);
 
-	void loadFighter(Fighter* nFighter);
+	bool loadFighter(Fighter* nFighter);
 	Fighter* launchNextFighter();
 
 	string getInfo();

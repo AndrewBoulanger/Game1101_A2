@@ -8,13 +8,15 @@ Carrier::Carrier(string name, int maxBays)
 	bayList[maxBays];
 }
 
-void Carrier::loadFighter(Fighter* nFighter)
+bool Carrier::loadFighter(Fighter* nFighter)
 {
 	if (maxBays > numFighters)
 	{
 		bayList[numFighters] = nFighter;
 		numFighters += 1;
+		return true;
 	}
+	return false;
 }
 
 Fighter* Carrier::launchNextFighter()
@@ -27,7 +29,7 @@ Fighter* Carrier::launchNextFighter()
 		return nextFighter;
 	}
 	else
-		return nullptr;
+		return false;
 }
 
 string Carrier::getInfo()
