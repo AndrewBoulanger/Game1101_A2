@@ -5,7 +5,7 @@ Carrier::Carrier(string name, int maxBays)
 	this->name = name;
 	this->maxBays = maxBays;
 	numFighters = 0;
-	bayList[maxBays];
+	bayList = new Fighter*[maxBays];
 }
 
 bool Carrier::loadFighter(Fighter* nFighter)
@@ -29,7 +29,7 @@ Fighter* Carrier::launchNextFighter()
 		return nextFighter;
 	}
 	else
-		return false;
+		return nullptr;
 }
 
 string Carrier::getInfo()
@@ -38,7 +38,7 @@ string Carrier::getInfo()
 	ss << name << "\n";
 	for (int i = 0; i < numFighters; i++)
 	{
-	//	ss << bayList[i].getInfo() << "\n";
+		ss << bayList[i]->getInfo() << "\n";
 	}
 	return ss.str();
 }

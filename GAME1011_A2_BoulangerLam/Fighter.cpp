@@ -1,5 +1,6 @@
 #include "Fighter.h"
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 Fighter::Fighter(string name, int damage, int str)
@@ -31,9 +32,11 @@ int Fighter::getStructStrength()
 	return structStrength;
 }
 
-void Fighter::getInfo()
+string Fighter::getInfo()
 {
-	cout << "Fighter Name: " << fName << endl
+	ostringstream ss;
+	ss << "Fighter Name: " << fName << endl
 		<< "Structural Strength: " << structStrength << endl
 		<< "Damage: " << damage << endl;
+	return ss.str();
 }
