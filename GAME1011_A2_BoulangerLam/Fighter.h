@@ -13,5 +13,5 @@ public:
 	string getFName();
 	int getDamage();
 	int getStructStrength();
-	void getInfo();
+	string getInfo();
 };
