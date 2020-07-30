@@ -35,10 +35,15 @@ Fighter* Carrier::launchNextFighter()
 string Carrier::getInfo()
 {
 	ostringstream ss;
-	ss << name << "\n";
-	for (int i = 0; i < numFighters; i++)
+	ss << "\t" << name << "\n";
+	if (numFighters == 0)
+		ss << "no fighters left\n";
+	else
 	{
-		ss << bayList[i]->getInfo() << "\n";
+		for (int i = 0; i < numFighters; i++)
+		{
+			ss << bayList[i]->getInfo() << "\n";
+		}
 	}
 	return ss.str();
 }
