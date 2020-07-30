@@ -1,5 +1,4 @@
 #pragma once
-<<<<<<< HEAD
 #include <string>
 using namespace std;
 class Fighter
@@ -15,9 +14,4 @@ public:
 	int getDamage();
 	int getStructStrength();
 	void getInfo();
-=======
-class Fighter
-{
->>>>>>> master
 };
-

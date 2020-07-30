@@ -1,5 +1,4 @@
 #include "Fighter.h"
-<<<<<<< HEAD
 #include <iostream>
 using namespace std;
 
@@ -35,8 +34,6 @@ int Fighter::getStructStrength()
 void Fighter::getInfo()
 {
 	cout << "Fighter Name: " << fName << endl
-		 << "Structural Strength: " << structStrength << endl
-		 << "Damage: " << damage << endl;
+		<< "Structural Strength: " << structStrength << endl
+		<< "Damage: " << damage << endl;
 }
-=======
->>>>>>> master
