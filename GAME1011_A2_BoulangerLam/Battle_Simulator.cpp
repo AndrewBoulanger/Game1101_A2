@@ -1,3 +1,6 @@
+//Andrew Boulanger 101 292 574
+//Pauleen Lam 101 065 605
+
 
 #include <iostream>
 #include <string>
@@ -21,9 +24,9 @@ void battle(Carrier* c1, Carrier* c2)
 
 }
 
-Carrier** Load2Ships(string path)
+void Load2Ships(string path, Carrier *first, Carrier *second)
 {
-    Carrier** ships = new Carrier*[2];
+    Carrier* ships[2] = {first, second};
     ifstream read;
     string name;
     int m, n, numShips;
@@ -31,11 +34,12 @@ Carrier** Load2Ships(string path)
     read.open("shipData.txt");
     if (read.is_open())
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++) //for each ship
         {
             read >> name >> m >> numShips;
-            ships[i] = new Carrier(name, m);
-            for (int j = 0; j < numShips; j++)
+            *ships[i] = Carrier(name, m);
+
+            for (int j = 0; j < numShips; j++) //for each fighter
             {
                 read >> name >> m >> n;
                 ships[i]->loadFighter(new Fighter(name, m, n));
@@ -45,7 +49,7 @@ Carrier** Load2Ships(string path)
     }
     else
         cout << "couldn't open file\n";
-     return ships;
+
 }
 
 int main()
@@ -53,22 +57,20 @@ int main()
     srand((unsigned)time(0));
 
     //load carriers
-    Carrier *c1, *c2;
-    Carrier** ships = Load2Ships("shipData.txt");
-    c1 = ships[0];
-    c2 = ships[1];
+    Carrier c1, c2;
+    Load2Ships("shipData.txt", &c1, &c2);
 
     //print ship info
-    cout << c1->getInfo();
-    cout << c2->getInfo();
+    cout << c1.getInfo();
+    cout << c2.getInfo();
     system("pause");
 
     //battle
-    battle(c1, c2);
+    battle(&c1, &c2);
 
-    //print ship info
-    cout << c1->getInfo();
-    cout << c2->getInfo();
+    //print ship info (one will be dead)
+    cout << c1.getInfo();
+    cout << c2.getInfo();
 
 }
 
