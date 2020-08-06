@@ -148,7 +148,7 @@
     <ClInclude Include="Fighter.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="shipInfo.txt" />
+    <Text Include="shipData.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
