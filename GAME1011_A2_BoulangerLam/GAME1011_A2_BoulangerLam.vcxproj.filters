@@ -34,7 +34,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="shipInfo.txt">
+    <Text Include="shipData.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
