@@ -13,25 +13,26 @@
 #include "Fighter.h"
 
 //roll a die of however many sides. returns true if roll >= goal 
-int rollDice(int sides, int goal)
+bool RollDiceCheck(int sides, int goal)
 {
     int roll = rand() % sides + 1;
-    if (goal == -1) // goal = -1 to use dice for value
-    {
-        if (roll == 0) return 1; // at least 1
-        return roll;
-    }
-    else // true or false of over goal amount
-    {
-        if (roll >= goal) return 1;
-        return 0;
-    }
+    return (roll >= goal);
 }
+
+void rollDamage(Fighter* attacker, Fighter* target)
+{
+    int damage = rand() % attacker->getDamage() + 1;
+    target->reduceStructure(damage);
+    cout << attacker->getFName() << " hits " << target->getFName() << " for " << damage << " damage!!!\n";
+
+    if(target->getStructStrength() <= 0)
+        cout << "BOOOOOMMMM ! " << target->getFName() << " destroyed!!!!!\n";
+}
+
 
 void battle(Carrier* c1, Carrier* c2)
 {
-    int num,
-        round = 1, battle = 1;
+    int round = 1, battle = 1;
     Fighter* f1;
     Fighter* f2;
     Fighter* first;
@@ -55,7 +56,7 @@ void battle(Carrier* c1, Carrier* c2)
         while (f1->getStructStrength() > 0 && f2->getStructStrength() > 0) {
             cout << "------------- ROUND " << round << "------------\n";
             // see who goes first
-            if (rollDice(100, 50)) {
+            if (RollDiceCheck(100, 50)) {
                 first = f1;
                 second = f2;
             }
@@ -65,31 +66,22 @@ void battle(Carrier* c1, Carrier* c2)
             }
             // attack
             cout << first->getFName() << " attacks first...\n";
-            num = rollDice(first->getDamage(), -1);
-            if (rollDice(100, 50)) {
-                num = rollDice(first->getDamage(), -1);
-                second->reduceStructure(num);
-                cout << first->getFName() << " hits " << second->getFName() << " for " << num << " damage!!!\n";
-            }
-            else {
+            
+            if (RollDiceCheck(100, 50)) 
+                rollDamage(first, second);
+            else 
                 cout << first->getFName() << " misses " << second->getFName() << "!!!\n";
-            }
+            
             /// if the defender is alive....
             if (second->getStructStrength() > 0) {
                 cout << second->getFName() << " counter attacks ...\n";
-                if (rollDice(100, 50)) {
-                    num = rollDice(second->getDamage(), -1);
-                    first->reduceStructure(num);
-                    cout << second->getFName() << " hits " << first->getFName() << " for " << num << " damage!!!\n";
-                }
-                else {
+
+                if (RollDiceCheck(100, 50)) 
+                    rollDamage(second, first);
+                else 
                     cout << second->getFName() << " misses " << first->getFName() << "!!!\n";
-                }
             }
-            else
-            {
-                cout << "BOOOOOMMMM ! " << second->getFName() << " destroyed!!!!!\n";
-            }
+      
             round++;
             cout << "End of round stats: " << f1->getFName() << "(" << f1->getStructStrength() << " structure strength)\t" << f2->getFName() << "(" << f2->getStructStrength() << " structure strength)\n";
         }
@@ -108,6 +100,7 @@ void battle(Carrier* c1, Carrier* c2)
         round = 1;
     }
 
+    system("cls");
     if (c1->hasFighters())
         cout << endl << c2->getName() << " is out of fighters, the battle is over...\n\n" << c1->getName() << " WINS!\n\n";
     else
@@ -161,8 +154,10 @@ int main()
     battle(&c1, &c2);
 
     //print ship info (one will be dead)
+    system("cls");
     cout << c1.getInfo();
     cout << c2.getInfo();
+    system("pause");
 
     return 0;
 }
