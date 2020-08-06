@@ -13,7 +13,7 @@
 #include "Fighter.h"
 
 //roll a die of however many sides. returns true if roll >= goal 
-bool rollDice(int sides, int goal)
+bool DiceRollCheck(int sides, int goal)
 {
     int roll = rand() % sides + 1;
     return (roll >= goal);
